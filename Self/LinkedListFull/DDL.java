@@ -165,6 +165,104 @@ static void endIns(){
         tail = endNode;
         
     }
+} 
+
+                   // ====== DELETION PROCESSES ====== 
+// Deletion at Top
+static void delTop(){ 
+    System.out.println(" ----- Deletion At Top ----- ");
+    if(head == null)
+    { 
+        System.out.println("List is empty! ");
+        return;
+
+    } 
+   if(head == tail)
+   { 
+    head = null;
+    tail = null;
+    return;
+   }  
+   else
+   { 
+    head = head.next;
+    head.pre = null;
+   }
+} 
+
+// Deletion at Mid 
+static void delmid(){ 
+    System.out.println(" ---- Deletion at Mid level ---- ");
+    System.out.print("Enter the index: ");
+    int index = sc.nextInt();
+    if(head == null)
+    { 
+        System.out.println("List is Empty! ");
+        return;
+    }
+    if(index <= 0)
+    { 
+        System.out.println("Invalid index!");
+        return;
+    } 
+    if(index == 1)
+    {
+        System.out.println("Use Top level Deletion Method!");
+        return;
+    } 
+    
+    else
+    { 
+        Node temp = head;
+        Node pre = null;
+        for(int i = 1; i<index && temp!=null ; i++ )
+        { 
+            pre = temp;
+            temp = temp.next;
+            if(temp == null)
+            { 
+                System.out.println("Invalid Index! ");
+                return;
+            } 
+            if(temp.next == null)
+            { 
+                System.out.println("Use deletion at end Method !");
+                return;
+            }
+
+        } 
+        pre.next = temp.next;
+        temp.next.pre = pre;
+    }
+}
+
+// Deletion at End
+static void delEnd(){ 
+    System.out.println("---- Deletion at End ----");
+    if(head == null) 
+    { 
+        System.out.println("List is empty!");
+        return;
+    } 
+   if(head == tail)
+    { 
+        head = null;
+        tail = null;
+        return;
+}  
+else
+{ 
+    Node temp = head;
+    Node pre = null;
+    while(temp.next!=null)
+    { 
+        pre = temp;
+        temp = temp.next;
+    } 
+    pre.next = null;
+    tail = pre;
+    temp.pre = null;
+}
 }
 
 
@@ -175,8 +273,15 @@ static void endIns(){
         //display();
         //midIns();
         //display();
-        endIns();
+        //endIns();
+        //display();
+        //delTop();
+        //display();
+        //delmid();
+        //display();
+        delEnd();
         display();
+    
 
         
     }

@@ -13,5 +13,6 @@ public class Reverse {
 
         }
         System.out.println("The Reverse of the number is :" +answer);
+        sc.close();
     }
 }

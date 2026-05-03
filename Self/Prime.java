@@ -11,6 +11,7 @@ public class Prime {
             System.out.println("The " +n+ " is not a prime number");
          }else{ 
             System.out.println("the " +n+ "  number is prime number");
+            sc.close();
          }
        
     } 
@@ -25,8 +26,9 @@ public class Prime {
                 return false;
             }
         } return true;
+        
        } 
-
+    
 
         }
 }

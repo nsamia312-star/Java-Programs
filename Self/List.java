@@ -104,7 +104,8 @@ public class List {
         l.InsertionAtMid();
         l.Display();
         l.InsertionAtEnd();
-        l.Display();;
+        l.Display();
+        sc.close();
 
     }
 }
