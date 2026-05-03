@@ -55,12 +55,129 @@ static void display(){
         temp = temp.next;
     } 
     System.out.println("null");
+} 
+              // ====== INSERTION PROCESSES ======
+// Insertion at Top
+static void topIns(){ 
+    System.out.println("***** Insertion at Top *****");
+    System.out.print("Enter the data for new Node: ");
+    int data = sc.nextInt();
+    Node topNode = new Node(data);
+    if(head == null)
+    { 
+        head = topNode;
+        tail = topNode;
+        topNode.pre = null;
+        
+    } 
+    else
+    {
+      //  Node tail = null;
+       // Node temp = head;
+        topNode.next = head;
+        head.pre = topNode;
+        topNode.pre = null;
+        head = topNode;
+    }
+    
+}   
+
+// Insertion at Mid
+static void midIns(){ 
+    System.out.println("***** Insertion at Mid *****");
+    System.out.print("Enter your data for the new Node: ");
+    int data = sc.nextInt();
+    Node midNode = new Node(data);
+    System.out.print("Enter the index: ");
+    int index = sc.nextInt();
+    if(index <=0)
+        { 
+            System.out.println("Invalid Index! ");
+            return;
+        } 
+    if(head == null)
+    {
+        if(index == 1)
+        {
+             
+        head = midNode;
+        tail = midNode;
+        midNode.pre = null;
+     
+        } 
+        else
+        {
+            System.out.println("Invalid Index! ");
+            return;
+        }
+        return;
+    }
+
+    if(index == 1)
+    { 
+        System.out.println("Use Top Insertion Method! ");
+        return;
+    }
+    else
+    { 
+        Node temp = head;
+        Node pre = null;
+        for(int i =0;i<index-1 && temp!=null;i++)
+        { 
+            pre = temp;
+            temp = temp.next;
+            if(temp == null)
+            { 
+                System.out.println("Use End Insertion Method!");
+                return;
+            }
+        } 
+        midNode.next = temp;
+        midNode.pre = pre;
+        temp.pre = midNode;
+        pre.next = midNode;
+
+    }
+} 
+// Insertion at End
+static void endIns(){ 
+    System.out.println("****** Insertion at End ******");
+    System.out.print("Enter the data: ");
+    int data = sc.nextInt();
+    Node endNode = new Node(data);
+    if(head == null)
+    { 
+        head = endNode;
+        tail = endNode;
+        endNode.pre = null;
+        endNode.next = null;
+    } 
+    else
+    { 
+        Node temp = head;
+        while(temp.next!=null)
+        { 
+            temp = temp.next;
+        } 
+        temp.next = endNode;
+        endNode.pre = temp;
+        endNode.next = null;
+        tail = endNode;
+        
+    }
 }
 
 
     public static void main(String[] args) {
         input();
         display();
+        //topIns();
+        //display();
+        //midIns();
+        //display();
+        endIns();
+        display();
+
         
     }
 }
