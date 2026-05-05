@@ -31,13 +31,35 @@ public class StackOne {
             System.out.println( data + " is pushed");
         }
     }
+    static void pop()
+    { 
+        if(top == -1)
+        {
+            System.out.println("Stack is empty!");
+            return;
+        } 
+        else 
+        {
+            System.out.println(stack[top] + " is popped succesfully!");
+            top--;
+        }
+    }
+    static void display(){
+        System.out.println("Your full stack is :");
+        for(int i =top;i>=0;i--)
+        {
+            System.out.println("List is : " + stack[i]);
+        }
+    }
 
 public static void main(String[] args) {
    // System.out.println(input(top));;
     for(int i =0;i<stack.length;i++)
     {
         push();
-    }
+    } 
+    pop();
+    display();
 }
     
 }
