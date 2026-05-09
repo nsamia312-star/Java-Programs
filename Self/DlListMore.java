@@ -13,11 +13,16 @@ Node(int data)
 }
 public class DlListMore {
     static Scanner sc = new Scanner(System.in);
-    static Node head = null;
-    static Node tail = null;
+    static Node head1 = null;
+    static Node tail1 = null;
+    static Node head2 = null;
+    static Node tail2 = null;
+    // for splitting list 
+    static Node secondhalf= null ;
+    
 
     // Getting Input
-    static void input ()
+    static void input1 ()
     {
         while (true) {
         System.out.print("Enter your data: ");
@@ -27,27 +32,56 @@ public class DlListMore {
             break;
         } 
         Node newNode = new Node(data);
-        if(head == null)
+        if(head1 == null)
         {
-            head = newNode;
-            tail = newNode;
+            head1 = newNode;
+            tail1 = newNode;
             newNode.pre = null;
 
         } 
         else
         {
-           tail.next = newNode;
-           newNode.pre = tail;
-           tail = newNode; 
+           tail1.next = newNode;
+           newNode.pre = tail1;
+           tail1 = newNode; 
         }
 
         }
-    }
+    } 
 
-    //  Display
-    static void display()
+    // INPUT METHOD FOR LIST TWO 
+     static void input2 ()
     {
-        System.out.println("==== YOUR DLL ====");
+        while (true) {
+        System.out.print("Enter your data: ");
+        int data = sc.nextInt();
+        if(data == 0)
+        {
+            break;
+        } 
+        Node newNode = new Node(data);
+        if(head2 == null)
+        {
+            head2 = newNode;
+            tail2 = newNode;
+            newNode.pre = null;
+
+        } 
+        else
+        {
+           tail2.next = newNode;
+           newNode.pre = tail2;
+           tail2 = newNode; 
+        }
+
+        }
+    } 
+
+
+    //  Display (Reusable for both lists)
+    static void display(Node head)
+    {
+       // System.out.println("==== YOUR DLL ====");
         if(head == null)
         {
             System.out.println("List is empty");
@@ -64,31 +98,31 @@ public class DlListMore {
         }
 
     }
-    // Insertion At End
+    // Insertion At End (Only valid for list one)
     static void endInsertion()
     {   System.out.println("Enter your data: ");
         int data = sc.nextInt();
         Node endNode = new Node(data);
-        if(head == null)
+        if(head1 == null)
         {
-        head = endNode;
-        tail = endNode;
+        head1 = endNode;
+        tail1 = endNode;
         endNode.pre = null;    
         } 
         else
         {
-            Node temp = head;
+            Node temp = head1;
             while (temp.next!=null) {
                 temp = temp.next;
             }
             temp.next = endNode;
             endNode.pre = temp;
             endNode.next = null;
-            tail = endNode;
+            tail1 = endNode;
         }
     }
-    //Sort Method
-    static void sort()
+    //Sort Method (Reusable for both lists)
+    static void sort(Node head)
     {
         if(head==null || head.next == null)
         {
@@ -111,16 +145,16 @@ public class DlListMore {
             }
         }
     }
-    // Duplicate Deletion
-    static void deleteNode()
+    // Duplicate Deletion (FOR LIST 1)
+    static void deleteNode1()
     {
-        if(head==null||head.next==null)
+        if(head1==null||head1.next==null)
         {
             return;
         }
         else
         {
-            Node pre = head;
+            Node pre = head1;
             Node curr = pre.next;
             while(curr!=null)
             {
@@ -134,7 +168,7 @@ public class DlListMore {
                     else
                     {
                         pre.next = null;
-                        tail = pre;
+                        tail1 = pre;
                     }
                     curr = pre.next; 
                     
@@ -148,14 +182,119 @@ public class DlListMore {
             }
         }
     }
-    // Merge Sort
+        // Duplicate Deletion (FOR LIST 2)
+    static void deleteNode2()
+    {
+        if(head2==null||head2.next==null)
+        {
+            return;
+        }
+        else
+        {
+            Node pre = head2;
+            Node curr = pre.next;
+            while(curr!=null)
+            {
+                if(curr.data == pre.data)
+                {
+                    if(curr.next!=null)
+                    {
+                    pre.next = curr.next;
+                    curr.next.pre = pre;
+                    } 
+                    else
+                    {
+                        pre.next = null;
+                        tail2 = pre;
+                    }
+                    curr = pre.next; 
+                    
+                    
+                } 
+                else
+                {
+                    pre = curr;
+                    curr = curr.next;
+                }
+            }
+        }
+    }
+    // MergeD Lists
+    static void merge()
+    {
+        if(head1==null)
+        {
+            head1 = head2;
+            tail1 = tail2;
+
+        }
+        else if(head2 == null)
+        {
+            System.out.println("List is already sorted!" );
+            return;
+        }
+        else
+        {
+            tail1.next = head2;
+            head2.pre = tail1;
+            tail1 =tail2;
+            sort(head1);
+        }
+    } 
+    //Split list
+    static void split()
+    {
+        if(head1 == null || head1.next == null)
+        {
+            System.out.println("List is empty");
+            return;
+        } 
+        Node slow = head1;
+        Node fast = head1;
+        while(fast.next!=null && fast.next.next!=null)
+        {
+            slow = slow.next;
+            fast = fast.next.next;
+        } 
+       
+        secondhalf = slow.next;
+        slow.next = null;
+        secondhalf.pre = null;
+    }
 
     public static void main(String[] args) {
-        input();
-        display();
-        sort();
-        display();
-        deleteNode();
-        display();
+        System.out.println("=== INPUT FOR LIST ONE ===");
+        input1();
+        System.out.println(" --- Orifinal List 1 ---");
+        display(head1);
+        sort(head1);
+        System.out.println("--- Sorted List 1 ---");
+        display(head1); 
+        deleteNode1();
+        System.out.println("---List after deletion of duplicates---");
+        display(head1);
+
+        //LIST TWO
+        System.out.println("=== INPUT FOR LIST TWO ===");
+        input2();
+        System.out.println("---Original list 2");
+        display(head2);
+        sort(head2);
+        System.out.println("---Sorted List 2 ---");
+        display(head2);
+        deleteNode2();
+        System.out.println("---List after deletion of duplicates---");
+        display(head2);
+        // Merge Call
+        merge();
+        System.out.println("---Your merged list---");
+        //Merge after deletion of duplicated:
+        deleteNode1();
+        display(head1);
+        //Splitted list
+        split();
+        display(secondhalf);
+        
+       
     }
 }
