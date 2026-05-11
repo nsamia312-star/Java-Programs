@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class StackQuiz {
    static Scanner sc = new Scanner(System.in);
-    static int[] stack = new  int[5];
+    static int[] stack = new  int[35];
     static int top = -1;
     // Push Method
     static void push(int x)
@@ -28,7 +28,7 @@ public class StackQuiz {
         } 
         else
         {
-            System.out.println(stack[top]);
+            System.out.print(stack[top]);
             top--;
         }
     }
@@ -81,17 +81,41 @@ public class StackQuiz {
             return ch;
         } 
     }
-    // Binary Conversion
+    // Fcatorial Method
+    static int factorial(int data)
+    {
+        int fact = 1;
+        for(int i =1;i<=data;i++)
+        {
+            fact = fact * i;
+        } 
+            return fact;
+
+        
+
+    }
     
 
     public static void main(String[] args) {
-         for(int i = 0;i<5;i++)
-        {
+        // for(int i = 0;i<5;i++)
+        // Binary Conversion
+    
             System.out.print("Enter your data: ");
-              int data = sc.nextInt();
-             push(data);
-        }  
-        display();
+            int data = sc.nextInt();
+            //int last = factorial(data);
+            System.out.println("The factorial of the " +data+ " is " +factorial(data) );
+            System.out.println("Binary Conversion of "  + data + " is" );
+
+             while(data>0)
+             {
+                push(data%2);
+                data = data/2;
+             }
+       while(top!=-1)
+       {
+         pop();
+       }
+       
 
         // String Input
        /*  System.out.print("Enter your String: ");
