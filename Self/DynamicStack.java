@@ -58,6 +58,20 @@ public class DynamicStack {
         }
 
   }
+  //Count Nodes
+  static int Counter()
+  {
+    int count = 0;
+    Node temp = top;
+    while (temp!=null) {
+    //System.out.println(temp.data);
+    
+    temp = temp.next;    
+    count++;   
+    } 
+    return count;
+  }
+  
     public static void main(String[] args) {
        while(true)
        {
@@ -72,8 +86,10 @@ public class DynamicStack {
             push(data);
         }
        }
+        System.out.println("Total nodes are : " +Counter());
        System.out.println("The Element is popped: " +pop());
        display();
+      
         
     }
 }
