@@ -25,9 +25,16 @@ public class QueueFirst {
 
     public static void main(String[] args) {
         enqueue(12);
+        // Dequeue envoke
+        dequeue();
         enqueue(30);
         enqueue(40);
         enqueue(89);
+        display();
+
+        // Dequeue
+        dequeue();
+        dequeue();
         display();
         
     }
