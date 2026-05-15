@@ -40,6 +40,20 @@ public class QueueMenu {
         }
     }
 
+// Display Method
+    static void display() {
+        if (front == -1 || front > rear) {
+            System.out.println("Queue is empty!");
+            return;
+        } else {
+            System.out.print("Queue elements: ");
+            for (int i = front; i <= rear; i++) {
+                System.out.print(queue[i] + " ");
+            }
+            System.out.println();
+        }
+    }
+
 
     public static void main(String[] args) {
         
