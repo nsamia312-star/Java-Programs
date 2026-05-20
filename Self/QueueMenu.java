@@ -52,7 +52,20 @@ public class QueueMenu {
             System.out.println();
         }
     }
+    // Peek()
+    static void peek()
+    {
+        if(front == -1 || front>rear)
+        {
+            System.out.println("Queue is Empty!");
+            return;
 
+        }
+        else
+        {
+            System.out.println("The front element is " +queue[front]);
+        }
+    }
 
     public static void main(String[] args) {
         int choice = 0;
@@ -61,7 +74,8 @@ public class QueueMenu {
             System.out.println("1.Enqueue");
             System.out.println("2.Dequeue");
             System.out.println("3.Display");
-            System.out.println("4.Exit");
+            System.out.println("4. Peek");
+            System.out.println("5.Exit");
             System.out.println("Enter your choic");
             choice = sc.nextInt();
             switch (choice) {
@@ -75,7 +89,9 @@ public class QueueMenu {
                     break;
                 case 3:
                     display();
-                    break;        
+                    break; 
+                case 4:
+                    peek();           
             
                 default:
                 System.out.println("Invalid Choice!");    
