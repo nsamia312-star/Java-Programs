@@ -23,7 +23,6 @@ public class QueueMenu {
         rear++;
         queue[rear] = data;
        }
-
        
         
     } 
@@ -56,6 +55,36 @@ public class QueueMenu {
 
 
     public static void main(String[] args) {
+        int choice = 0;
+        do{
+            System.out.println("*** QUEUE MENU *** ");
+            System.out.println("1.Enqueue");
+            System.out.println("2.Dequeue");
+            System.out.println("3.Display");
+            System.out.println("4.Exit");
+            System.out.println("Enter your choic");
+            choice = sc.nextInt();
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter your data: ");
+                    int data = sc.nextInt();
+                    enqueue(data);
+                    break;
+                case 2:
+                    dequeue();
+                    break;
+                case 3:
+                    display();
+                    break;        
+            
+                default:
+                System.out.println("Invalid Choice!");    
+                    break;
+            }
+
+        } while (choice!=4) ;
+            
+        
         
     }
 }
